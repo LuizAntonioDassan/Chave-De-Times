@@ -1,8 +1,10 @@
-package com.example.prova2;
+package com.example.prova2.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.prova2.R;
 
 public class MainActivity extends AppCompatActivity {
 
