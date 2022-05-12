@@ -6,6 +6,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
+import java.sql.Time;
 import java.util.List;
 
 @Dao
@@ -19,5 +20,7 @@ public interface UserDao {
 
     @Delete
     void delete(Times times);
+
+
 
 }
