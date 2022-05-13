@@ -1,24 +1,22 @@
 package com.example.prova2.tabelas;
 
-
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import java.sql.Time;
 import java.util.List;
 
 @Dao
-public interface UserDao {
+public interface JogadorDAO {
 
-    @Query("SELECT * FROM Times")
-    List<Times> getAllUsers();
+    @Query("SELECT * FROM Jogador")
+    List<Jogador> getAllJogadores();
 
     @Insert
-    void insertUser(Times... times);
+    void InsertJogador(Jogador jogador);
 
     @Delete
-    void delete(Times times);
+    void delete(Jogador jogador);
 
 }

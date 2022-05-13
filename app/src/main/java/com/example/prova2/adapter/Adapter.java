@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.prova2.R;
 import com.example.prova2.databinding.RecyclerBinding;
+import com.example.prova2.tabelas.Jogador;
 import com.example.prova2.tabelas.Times;
 
 import org.w3c.dom.Text;
@@ -21,13 +22,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
     private Context context;
     private List<Times> timesList;
+    private List<Jogador> jogadorList;
 
     public Adapter(Context context){
         this.context = context;
     }
 
-    public void setTimesList(List<Times> timesList){
-        this.timesList = timesList;
+    public void setTimesList(List<Jogador> jogadorList){
+        this.jogadorList = jogadorList;
         notifyDataSetChanged();
     }
 
@@ -40,22 +42,23 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.nome.setText(this.timesList.get(position).getNome());
+        holder.nomeJogador.setText(this.jogadorList.get(position).getNome());
     }
 
     @Override
     public int getItemCount() {
-        return timesList.size();
+        return jogadorList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView nome;
-
+        TextView nomeTime;
+        TextView nomeJogador;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            nome = itemView.findViewById(R.id.NomeTimeTexto);
+            nomeTime = itemView.findViewById(R.id.NomeTimeTexto);
+            nomeJogador = itemView.findViewById(R.id.NomeJogador);
 
         }
     }

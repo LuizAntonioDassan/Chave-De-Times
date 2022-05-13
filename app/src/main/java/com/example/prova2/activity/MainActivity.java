@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.view.View;
 import com.example.prova2.R;
 import com.example.prova2.adapter.Adapter;
 import com.example.prova2.databinding.ActivityMainBinding;
+import com.example.prova2.tabelas.Jogador;
 import com.example.prova2.tabelas.Tabelas;
 import com.example.prova2.tabelas.Times;
 
@@ -28,19 +30,27 @@ public class MainActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        String nomeTime = binding.editNomeTime.getEditText().toString();
 
-        if(nomeTime != null){
-            binding.btnAdicionar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    salvarTime(nomeTime);
-                    Log.i("Teste", "Aqui Passou 1");
-                }
-            });
-        }
+        binding.btnAdicionarTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, AdicionarTime.class));
+            }
+        });
+
+        binding.btnAdicionarJogador.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, AdicionarJogador.class));
+            }
+        });
 
         reciclaNomeInit();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         loadListaTime();
     }
 
@@ -51,22 +61,12 @@ public class MainActivity extends AppCompatActivity {
         binding.reciclaTimes.setAdapter(adapter);
     }
 
-    public void salvarTime(String Nome){
-        Tabelas db = Tabelas.getDbInstance(this.getApplicationContext());
-
-        Times time = new Times();
-        time.setNome(Nome);
-
-        db.userDao().insertUser(time);
-
-        recreate();
-    }
-
     public void loadListaTime(){
         Tabelas db = Tabelas.getDbInstance(this.getApplicationContext());
         List<Times> timesList = db.userDao().getAllUsers();
+        List<Jogador> jogadorList = db.jogadorDao().getAllJogadores();
 
-        adapter.setTimesList(timesList);
+        adapter.setTimesList(jogadorList);
 
     }
 
