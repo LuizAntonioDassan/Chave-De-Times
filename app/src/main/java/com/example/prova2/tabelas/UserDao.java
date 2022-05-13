@@ -13,7 +13,10 @@ import java.util.List;
 public interface UserDao {
 
     @Query("SELECT * FROM Times")
-    List<Times> getAllUsers();
+    List<Times> getAllTimes();
+
+    @Query("SELECT * FROM Times WHERE Times.idTime LIKE :nomeTime")
+    public Times time getNomeDoTime(String nomeTime);
 
     @Insert
     void insertUser(Times... times);

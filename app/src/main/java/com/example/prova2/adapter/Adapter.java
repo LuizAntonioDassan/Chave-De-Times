@@ -43,6 +43,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.nomeJogador.setText(this.jogadorList.get(position).getNome());
+
     }
 
     @Override

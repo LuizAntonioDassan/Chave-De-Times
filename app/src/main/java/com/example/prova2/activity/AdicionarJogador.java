@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
@@ -22,7 +23,7 @@ import java.util.List;
 public class AdicionarJogador extends AppCompatActivity {
 
     private ActivityAdicionarJogadorBinding binding;
-    private SpinnerRowBinding spinnerRowBinding;
+    private Times timeSelecionado;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +34,22 @@ public class AdicionarJogador extends AppCompatActivity {
         carregaListaTimes();
         createSpinner();
 
+        Tabelas db = Tabelas.getDbInstance(this.getApplicationContext());
+        List<Times> times = db.userDao().getAllTimes();
+
+        binding.spinnerTimes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                timeSelecionado = times.get(position);
+                Log.i("Teste1" , times.get(position).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         binding.btnSalvarJogador.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,7 +64,7 @@ public class AdicionarJogador extends AppCompatActivity {
     private void carregaListaTimes() {
 
         Tabelas db = Tabelas.getDbInstance(this.getApplicationContext());
-        List<Times> timesList = db.userDao().getAllUsers();
+        List<Times> timesList = db.userDao().getAllTimes();
 
     }
 
@@ -59,6 +76,8 @@ public class AdicionarJogador extends AppCompatActivity {
         jogador.setCpf(CPF);
         jogador.setNome(Nome);
         jogador.setAnoNascimento(data);
+        jogador.setIdTime(timeSelecionado.getIdTime());
+
 
 
         db.jogadorDao().InsertJogador(jogador);
@@ -67,9 +86,14 @@ public class AdicionarJogador extends AppCompatActivity {
     }
     public void createSpinner(){
         Tabelas db = Tabelas.getDbInstance(this.getApplicationContext());
-        List<Times> times = db.userDao().getAllUsers();
+        List<Times> times = db.userDao().getAllTimes();
 
-        BaseAdapter spinnerAdapter = new BaseAdapter() {
+        ArrayAdapter<Times> timesArrayAdapter = new ArrayAdapter<Times>(this, android.R.layout.simple_spinner_item, times);
+        binding.spinnerTimes.setAdapter(timesArrayAdapter);
+
+
+
+      /*  BaseAdapter spinnerAdapter = new BaseAdapter() {
             @Override
             public int getCount() {
                 return times.size();
@@ -101,7 +125,7 @@ public class AdicionarJogador extends AppCompatActivity {
             }
         };
 
-        binding.spinnerTimes.setAdapter(spinnerAdapter);
+        binding.spinnerTimes.setAdapter(spinnerAdapter);*/
 
     }
 }

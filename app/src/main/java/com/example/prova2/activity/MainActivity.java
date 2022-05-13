@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void loadListaTime(){
         Tabelas db = Tabelas.getDbInstance(this.getApplicationContext());
-        List<Times> timesList = db.userDao().getAllUsers();
+        List<Times> timesList = db.userDao().getAllTimes();
         List<Jogador> jogadorList = db.jogadorDao().getAllJogadores();
 
         adapter.setTimesList(jogadorList);

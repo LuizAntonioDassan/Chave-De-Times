@@ -4,7 +4,8 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-@Entity
+@Entity(foreignKeys = @ForeignKey(entity = Times.class,
+parentColumns = "idTime", childColumns = "idTime"))
 public class Jogador {
 
     @PrimaryKey(autoGenerate = true)

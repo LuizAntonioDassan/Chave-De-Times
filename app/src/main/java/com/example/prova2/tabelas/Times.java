@@ -1,6 +1,7 @@
 package com.example.prova2.tabelas;
 
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -28,5 +29,11 @@ public class Times {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return getNome();
     }
 }
