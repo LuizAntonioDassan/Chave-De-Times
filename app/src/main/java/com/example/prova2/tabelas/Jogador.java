@@ -14,6 +14,7 @@ public class Jogador {
     private String nome;
     private String cpf;
     private int anoNascimento;
+    private String nomeTimeJogador;
 
     public int getId() {
         return id;
@@ -53,5 +54,13 @@ public class Jogador {
 
     public void setAnoNascimento(int anoNascimento) {
         this.anoNascimento = anoNascimento;
+    }
+
+    public String getNomeTimeJogador() {
+        return nomeTimeJogador;
+    }
+
+    public void setNomeTimeJogador(String nomeTimeJogador) {
+        this.nomeTimeJogador = nomeTimeJogador;
     }
 }

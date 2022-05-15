@@ -77,6 +77,7 @@ public class AdicionarJogador extends AppCompatActivity {
         jogador.setNome(Nome);
         jogador.setAnoNascimento(data);
         jogador.setIdTime(timeSelecionado.getIdTime());
+        jogador.setNomeTimeJogador(timeSelecionado.getNome());
 
 
 

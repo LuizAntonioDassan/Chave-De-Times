@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         binding.reciclaTimes.setAdapter(adapter);
     }
 
-    public void loadListaTime(){
+    public void loadListaTime() {
         Tabelas db = Tabelas.getDbInstance(this.getApplicationContext());
         List<Times> timesList = db.userDao().getAllTimes();
         List<Jogador> jogadorList = db.jogadorDao().getAllJogadores();
@@ -69,6 +69,4 @@ public class MainActivity extends AppCompatActivity {
         adapter.setTimesList(jogadorList);
 
     }
-
-
 }
